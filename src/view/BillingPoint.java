@@ -86,7 +86,7 @@ public class BillingPoint extends javax.swing.JFrame {
             }
         });
 
-        btnAddBill.setBackground(new java.awt.Color(51, 255, 51));
+        btnAddBill.setBackground(new java.awt.Color(102, 255, 102));
         btnAddBill.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAddBill.setText("Add To Bill");
         btnAddBill.addActionListener(new java.awt.event.ActionListener() {
