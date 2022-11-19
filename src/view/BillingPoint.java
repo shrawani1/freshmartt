@@ -4,6 +4,12 @@
  */
 package view;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import javax.swing.table.DefaultTableModel;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,11 +19,24 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BillingPoint extends javax.swing.JFrame {
 
+    
+    Connection con;
+    
     /**
      * Creates new form BillingPoint
      */
     public BillingPoint() {
         initComponents();
+        
+        String url="jdbc:mysql://localhost/tb_Mart";
+        String user="root";
+        String pswd="";
+        try{
+            con=DriverManager.getConnection(url, user, pswd);
+        }
+        catch(Exception ex){
+            System.out.println("ERROR:"+ex.getMessage());
+        }
     }
 
     /**
@@ -119,28 +138,29 @@ public class BillingPoint extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                    .addGap(17, 17, 17)
+                                    .addComponent(jLabel3))
+                                .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel2)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tfProductName, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                                .addComponent(tfProductQty))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAddBill, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel3))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfProductName, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                            .addComponent(tfProductQty))))
+                        .addGap(49, 49, 49)
+                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddBill, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -184,6 +204,11 @@ public class BillingPoint extends javax.swing.JFrame {
                 "Product_ID", "Product_NAME", "QTY", "PRICE", "CATEOGORY"
             }
         ));
+        Product_ID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Product_IDMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Product_ID);
 
         tblBill.setBackground(new java.awt.Color(204, 204, 255));
@@ -315,7 +340,7 @@ public class BillingPoint extends javax.swing.JFrame {
         String productName = tfProductName.getText();
         String productQty = tfProductQty.getText();
         int productId = 1;
-        int productPrice = 200;
+        int productPrice = 100;
         
         if(productName.isEmpty() || productQty.isEmpty()){
         // show error
@@ -333,18 +358,34 @@ public class BillingPoint extends javax.swing.JFrame {
         removeContents();
     }//GEN-LAST:event_btnClearActionPerformed
 
+    
+    
+    /*
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         tfProductName.setText("HJJKHJK");
     }//GEN-LAST:event_formWindowOpened
-
+*/
+    
+    
     private void tfProductQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProductQtyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfProductQtyActionPerformed
-
+/*int Uprice;
     private void tfProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProductNameActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model= (DefaultTableModel) p\ProductTable.getModel();
+        int Myindex=ProductTable.getSelectedRow();
+        Product_Id.setText(model.getValueAt(Myindex,0).toString());
+        Uprice=Integer.valueOf(model.getValueAt(Myindex,1).toString());
+        Product_Name.setText(model.getValueAt(Myindex,0).toString());
+        ProductQty.setText(model.getValueAt(Myindex,0).toString());
+        ProductPrice.setText(model.getValueAt(Myindex,0).toString());
     }//GEN-LAST:event_tfProductNameActionPerformed
+*/
+    private void Product_IDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Product_IDMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Product_IDMouseClicked
 
     /**
      * @param args the command line arguments

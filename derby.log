@@ -1,0 +1,14 @@
+Sat Nov 19 15:57:54 NPT 2022 : Apache Derby Network Server - 10.16.1.1 - (1901046) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Sat Nov 19 16:01:42 NPT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-0184-8f60-755c-ffffb9d99e9f 
+on database directory C:\Users\DELL\Desktop\project\FreshMart\FreshMartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44 
+Loaded from file:/D:/db-derby-10.16.1.1-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=19.0.1+10-21
+user.dir=D:\db-derby-10.16.1.1-bin
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\DELL\Desktop\project\FreshMart
+Database Class Loader started - derby.database.classpath=''
