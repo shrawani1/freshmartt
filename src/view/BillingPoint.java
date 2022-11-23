@@ -472,6 +472,7 @@ public class BillingPoint extends javax.swing.JFrame {
     private javax.swing.JTextField tfProductQty;
     // End of variables declaration//GEN-END:variables
 
+    //remove contents done
     private void removeContents() {
         tfProductName.setText("");
         tfProductQty.setText("");
