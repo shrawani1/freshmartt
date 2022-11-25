@@ -18,19 +18,19 @@ public class DbConnection {
 
         try {
 
-            String username = "root";
+            String username = "sql6580633";
 
-            String password = "root";
+            String password = "QsWxmMkg6M";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             connection = DriverManager.getConnection(
 
-                    "jdbc:mysql://localhost:3306/supermart", username, password);
+                    "jdbc:mysql://sql6.freesqldatabase.com/sql6580633", username, password);
 
             if (connection != null) {
 
-                System.out.println("Connected to database --> SoftwaricaDB");
+                System.out.println("Connected to database --> Online");
 
             } else {
 

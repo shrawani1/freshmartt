@@ -26,5 +26,13 @@ public class Product_Controller {
         int result = dbConnection.manipulate(addProductQuery);
         return result;
     }
+    public int fetchProduct(Product product){
+        int id = product.getProductId();
+        String name = product.getProductName();
+        int price = product.getProductPrice();
+        int qty = product.getProductQty();
+        return 0;
+    
+    }
 }
 
