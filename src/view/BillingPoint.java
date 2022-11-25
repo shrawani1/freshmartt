@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.Product_Controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -390,24 +391,19 @@ public class BillingPoint extends javax.swing.JFrame {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
             
+        Product_Controller pc = new Product_Controller();
+        Product fetchedProduct = pc.fetchProduct();
         
-        /*
         
-        select * from product_table;
-            String prodId=ProdId.getText();
-                  String prodName=ProdName.getText();
-                  String prodQty=ProdQty.getText();
-                  String prodPrice=ProdPrice.getText();
+                  int prodId=fetchedProduct.getProductId();
+                  String prodName=fetchedProduct.getProductName();
+                  int prodQty=fetchedProduct.getProductQty();
+                  int prodPrice=fetchedProduct.getProductPrice();
                   String prodCategory = "";
                   
-//if(prodId.isEmpty()|| prodName.isEmpty()||prodId.isEmpty()||prodId.isEmpty()||){}
-                  Product newProduct = new Product(Integer.parseInt(prodId),prodName,Integer.parseInt(prodQty),Integer.parseInt(prodPrice),prodCategory);
-                  Product_Controller pc = new Product_Controller();
-                  pc.addProduct(newProduct);
-
                   DefaultTableModel model = (DefaultTableModel) tbl_browse.getModel();
                   model.addRow(new Object[] {prodId,prodName,prodQty,prodPrice,prodCategory});// TODO add your handling code here:
-         */
+         
         
     }//GEN-LAST:event_btnFilterActionPerformed
 
