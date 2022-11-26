@@ -1,0 +1,12 @@
+create database SoftwaricaDB;
+use SoftwaricaDB;
+
+create table tbl_student(
+std_id int unique not null,
+std_name varchar(30) not null,
+std_age int not null check(std_age>17),
+std_address varchar(50) not null,
+std_contact varchar(10) not null unique
+);
+
+select * from tbl_student;
