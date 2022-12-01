@@ -13,6 +13,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import controller.ProductController;
+import controller.ProductUpdate;
 import models.Product;
 import javax.swing.table.DefaultTableModel;
 
@@ -198,6 +199,11 @@ public class product extends javax.swing.JFrame {
                 "PRODUCT ID", "PRODUCT NAME", "QUANTITY", "PRICE", "CATEGORY"
             }
         ));
+        ProductTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProductTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(ProductTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -396,14 +402,72 @@ public class product extends javax.swing.JFrame {
        ProdQty.setText("");
        ProdPrice.setText("");
        
-       
-      
-       
     }//GEN-LAST:event_BtnClearActionPerformed
-
+    
+    
+    
+    
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         // TODO add your handling code here:
+             String prodId=ProdId.getText();
+             String prodName=ProdName.getText();
+             String prodQty=ProdQty.getText();
+             String prodPrice=ProdPrice.getText();
+             String prodCategory = (String) CatCb.getSelectedItem();     
+        
+             Product newProduct = new Product(Integer.parseInt(prodId),prodName,Integer.parseInt(prodQty),Integer.parseInt(prodPrice),prodCategory);
+             ProductUpdate pc = new ProductUpdate();
+             pc.updateProduct(newProduct);
+        
+             
+        DefaultTableModel model = (DefaultTableModel) ProductTable.getModel();
+        if (ProductTable.getSelectedRowCount()==1){     
+        model.setValueAt(prodId,ProductTable.getSelectedRow(),0);
+        model.setValueAt(prodName,ProductTable.getSelectedRow(),1);
+        model.setValueAt(prodQty,ProductTable.getSelectedRow(),2);
+        model.setValueAt(prodPrice,ProductTable.getSelectedRow(),3);
+        model.setValueAt(prodCategory,ProductTable.getSelectedRow(),4);
+        
+        JOptionPane.showMessageDialog(this,"updated successfully");
+        }else{
+            if (ProductTable.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"The table is empty");
+            }else{
+                JOptionPane.showMessageDialog(this,"Please select a single Row for updating");
+                
+            }
+            
+        }
+             
+             
+             
+        
+
+
     }//GEN-LAST:event_BtnEditActionPerformed
+
+    
+    
+    private void ProductTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductTableMouseClicked
+        // TODO add your handling code here:
+                                             
+        
+        DefaultTableModel tblModel = (DefaultTableModel)ProductTable.getModel();
+        String tbleprodId = tblModel.getValueAt(ProductTable.getSelectedRow(),0).toString();
+        String tbleprodName = tblModel.getValueAt(ProductTable.getSelectedRow(),1).toString();
+        String tbleprodQty = tblModel.getValueAt(ProductTable.getSelectedRow(),2).toString();
+        String tbleprodPrice = tblModel.getValueAt(ProductTable.getSelectedRow(),3).toString();
+        String tbleprodCategory = tblModel.getValueAt(ProductTable.getSelectedRow(),4).toString();
+        
+        ProdId.setText(tbleprodId);
+        ProdName.setText(tbleprodName);
+        ProdQty.setText(tbleprodQty);
+        ProdPrice.setText(tbleprodPrice);
+        /*CatCb.addItem(tbleprodCategory);*/
+        
+   
+        
+    }//GEN-LAST:event_ProductTableMouseClicked
 
     /**
      * @param args the command line arguments
