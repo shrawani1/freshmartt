@@ -421,6 +421,7 @@ public class product extends javax.swing.JFrame {
         
              
         DefaultTableModel model = (DefaultTableModel) ProductTable.getModel();
+        
         if (ProductTable.getSelectedRowCount()==1){     
         model.setValueAt(prodId,ProductTable.getSelectedRow(),0);
         model.setValueAt(prodName,ProductTable.getSelectedRow(),1);

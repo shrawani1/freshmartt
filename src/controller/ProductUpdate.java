@@ -22,7 +22,7 @@ public class ProductUpdate {
         String category = product.getProductCategory();
         
 
-        String updateProductQuery = String.format("update product_table set productId = '%d',productName ='%s',productQty='%d',productPrice='%d',productCategory ='%s'",
+        String updateProductQuery = String.format("update product_table set productId = '"+id+"',productName ='"+name+"',productQty='"+qty+"',productPrice='"+price+"',productCategory ='"+category+"' where productId ='%d' ",
                 id,
                 name, qty, price, category);
         
