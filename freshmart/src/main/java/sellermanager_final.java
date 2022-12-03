@@ -335,6 +335,7 @@ import javax.swing.table.DefaultTableModel;
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        DBconnection db = new DBconnection();
         DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
         if (jTable1.getSelectedRowCount()==1){
             tblModel.removeRow(jTable1.getSelectedRow());

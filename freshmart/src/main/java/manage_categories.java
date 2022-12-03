@@ -265,6 +265,29 @@ public class manage_categories extends javax.swing.JFrame {
 
     private void deleteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn1ActionPerformed
         // TODO add your handling code here:
+        DBconnection db = new DBconnection();
+        int result;    
+        
+        String category_sn =snTxt.getText();
+        String category_name=nameTxt.getText();     
+        String category_description=descriptionTxt.getText();
+        
+        
+        String deleteQuery = String.format("delete from manage_categories where category_sn = '%s'",category_sn,category_name,category_description,category_sn);
+        result= db.execute_command(deleteQuery);
+         DefaultTableModel tblModel = (DefaultTableModel)manageCategoriesTable.getModel();
+        if (manageCategoriesTable.getSelectedRowCount()==1){
+            tblModel.removeRow(manageCategoriesTable.getSelectedRow());
+        }else{
+            if (manageCategoriesTable.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"Table is empty");
+            }else{
+                JOptionPane.showMessageDialog(this,"Select a row to delete");
+                
+            }
+            
+            
+        }
     }//GEN-LAST:event_deleteBtn1ActionPerformed
 
     private void descriptionTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTxtActionPerformed
@@ -273,6 +296,41 @@ public class manage_categories extends javax.swing.JFrame {
 
     private void editBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtn1ActionPerformed
         // TODO add your handling code here:
+        DBconnection db = new DBconnection();
+        int result;    
+        
+        String category_sn =snTxt.getText();
+        String category_name=nameTxt.getText();     
+        String category_description=descriptionTxt.getText();
+        
+        
+        String updateQuery = String.format("update manage_categories set category_sn= '%s', category_name= '%s',category_description= '%s' where category_sn = '%s'",category_sn,category_name,category_description,category_sn);
+        result= db.execute_command(updateQuery);
+        
+        DefaultTableModel tblModel = (DefaultTableModel)manageCategoriesTable.getModel();
+        
+        if (manageCategoriesTable.getSelectedRowCount()==1){
+       
+        
+        
+        tblModel.setValueAt(category_sn,manageCategoriesTable.getSelectedRow(),0);
+        tblModel.setValueAt(category_name,manageCategoriesTable.getSelectedRow(),1);
+        tblModel.setValueAt(category_description,manageCategoriesTable.getSelectedRow(),2);
+        
+        
+        JOptionPane.showMessageDialog(this,"updated successfully");
+        }else{
+            if (manageCategoriesTable.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"The table is empty");
+            }else{
+                JOptionPane.showMessageDialog(this,"Please select a single Row for updating");
+                
+            }
+            
+        }
+    
+        
+        
     }//GEN-LAST:event_editBtn1ActionPerformed
 
     private void manageCategoriesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageCategoriesTableMouseClicked
